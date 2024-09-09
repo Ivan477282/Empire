@@ -100,7 +100,8 @@
     let tg = window.Telegram.WebApp;
     let sms1 = document.getElementById("sms");
     let textareaHeight = document.getElementById("text");
-    
+    tg.expand();
+        
     textareaHeight.addEventListener("input", (event) => {
         textareaHeight.style.height = 0;
         textareaHeight.style.height = textareaHeight.scrollHeight + "px";
