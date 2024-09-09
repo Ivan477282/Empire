@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">      
+    <title>EMPIRE POST</title>
+    <style>
+    body {
+        padding: 0px;
+        margin: 0px;
+        font-size: 10px;
+        color: var(--tg-theme-text-color);
+        background-image: url("empire.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        text-align: center;
+    }
+    
+    #seven {
+        text-align: center;
+    }
+    
+    .img3 {
+        width: 80%;
+        margin-top: 10px;
+        margin-bottom: 70px;
+    }
+    
+    .pi {
+        border: 0;
+        border-radius: 5px;
+        margin-top: 40px;
+        margin-left: 58px;
+        margin-right: 58px;
+        height: 60px;
+        width: 200px;
+        font-size: 26px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 500ms ease;
+        color: #ffffff;
+        background: rgb(248, 168, 24); 
+        transition: background .2s linear;        
+    }
+    
+    .pi:hover {
+        background: lightgreen;         
+    }
+    
+    .dar {
+        display: inline-block;
+        background: #8C959D;
+        margin: 10px 5%;
+        margin-top: 30px;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+    
+    .textarea {
+        font-size: 22px;
+        font-family: Arial;
+        border-radius: 15px;
+        resize: none;
+        padding: 5px;
+        overflow: hidden;
+        box-sizing: border-box;
+        height: 40px;
+        min-height: 40px;
+        width: 92%;
+        margin-top: 100px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 15px;
+    }
+    </style>
+</head>
+<body>
+  <form id="seven">
+      <textarea id="text" placeholder="Пост в EMPIRE" class="textarea"></textarea>
+      <div id="error"></div>
+      <button id="sms" class="pi">Продолжить</button>
+      <a href="http://t.me/" class="dar">Формат ввода сообщения для поста</a>
+      <a href="http://t.me/" class="dar">Пример сообщения для поста</a>
+  </form>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> 
+    <script>
+    let tg = window.Telegram.WebApp;
+    let sms1 = document.getElementById("sms");
+    let textareaHeight = document.getElementById("text");
+    
+    textareaHeight.addEventListener("input", (event) => {
+        textareaHeight.style.height = 0;
+        textareaHeight.style.height = textareaHeight.scrollHeight + "px";
+    });
+ 
+    sms1.addEventListener("click", () => {
+        let t = document.getElementById("text").value;
+        if(t) {            
+            let data = {
+                sms: t,
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        } else {
+            document.getElementById('error7').innerText = 'Ошибка в сообщении';
+        }           
+    });
+    </script>
+</body>
+</html>
